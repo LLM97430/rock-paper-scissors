@@ -1,16 +1,6 @@
 let humanScore = 0;
 let computerScore = 0;
 
-function humanWin() {
- console.log("You win !");
- humanScore++;
-}
-
-function computerWin() {
- console.log("You loose !")
- computerScore++;
-}
-
 function getComputerChoice() {
  let randomNumber = Math.floor(Math.random()*3);
  if (randomNumber == 0) {
@@ -36,18 +26,39 @@ function playRound(humanChoice, computerChoice) {
  }
  else if (getHumanChoice == "rock" && getComputerChoice == "scissors")
  {
-  humanWin();
+  console.log(`You win ! ${humanChoice} beat ${computerChoice}` );
+  humanScore++;
  }
  else if (getHumanChoice == "paper" && getComputerChoice == "rock") {
-  humanWin();
+ console.log(`You win ! ${humanChoice} beat ${computerChoice}` );
+ humanScore++;
  }
  else if (getHumanChoice == "scissors" && getComputerChoice == "paper") {
-  humanWin();
+ console.log(`You win ! ${humanChoice} beat ${computerChoice}` );
+ humanScore++;
  }
  else {
-  computerWin();
+ console.log(`You loose ! ${computerChoice} beat ${humanChoice}`)
+ computerScore++;
  }
-
- console.log(humanChoice);
- console.log(computerChoice)
 }
+
+function humanWin() {
+ console.log(`You win ! ${humanChoice} beat ${computerChoice}` );
+ humanScore++;
+}
+
+function playGame() {
+ while(humanScore+computerScore < 5) {
+  playRound();
+  console.log(`Your score: ${humanScore} - Computer score: ${computerScore}`)
+ }
+ if (humanScore>computerScore) {
+  console.log(`Congratulations ! You win ! Final score : ${humanScore} - ${computerScore}`)
+ }
+ else {
+  console.log(`Game over... Final score : ${computerScore} - ${humanScore}`)
+ }
+};
+
+playGame();
